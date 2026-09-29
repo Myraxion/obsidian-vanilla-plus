@@ -25,3 +25,11 @@
    - 进入 **设置 (Settings)** -> **外观 (Appearance)** -> **CSS 代码片段 (CSS snippets)**。
    - 点击 **重新加载代码片段 (Reload snippets)**。
    - 找到对应的片段并点击开关开启即可。
+
+---
+
+## 🙏 致谢与灵感来源 (Credits)
+
+本项目的部分视觉设计与样式灵感源自优秀的开源社区主题：
+- **[Border](https://github.com/akifyss/obsidian-border)** by [@akifyss](https://github.com/akifyss)：在标题动态指示条、渐隐分割线、点阵质感等细节美学上提供了极大启发，特此致敬与鸣谢。
+
