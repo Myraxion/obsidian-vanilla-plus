@@ -5,38 +5,46 @@
  * =================================================================== */
 
 :root {
-  --folder-bg-opacity: 18%;
+  /* 淡雅通透度：从 18% 降至 10%，符合 Radix/Linear 微色彩空间规范，呈现若隐若现的温润水墨/薄雾感 */
+  --folder-bg-opacity: 14%;
 }
 
 /* 1. 顶层文件夹公共盒模型与圆角 */
-.nav-files-container > div > .nav-folder {
+.nav-files-container>div>.nav-folder {
   border-radius: var(--radius-m, 4px);
   padding-block: var(--size-4-1, 4px);
   margin-block: var(--size-4-1, 4px);
 }
 
 /* 2. 8 色循环半透明背景分区 (基于官方原生调色板与现代 color-mix 规范) */
-.nav-files-container > div > .nav-folder:nth-child(8n+2) {
+.nav-files-container>div>.nav-folder:nth-child(8n+2) {
   background-color: color-mix(in oklch, var(--color-red) var(--folder-bg-opacity), transparent);
 }
-.nav-files-container > div > .nav-folder:nth-child(8n+3) {
+
+.nav-files-container>div>.nav-folder:nth-child(8n+3) {
   background-color: color-mix(in oklch, var(--color-orange) var(--folder-bg-opacity), transparent);
 }
-.nav-files-container > div > .nav-folder:nth-child(8n+4) {
+
+.nav-files-container>div>.nav-folder:nth-child(8n+4) {
   background-color: color-mix(in oklch, var(--color-yellow) var(--folder-bg-opacity), transparent);
 }
-.nav-files-container > div > .nav-folder:nth-child(8n+5) {
+
+.nav-files-container>div>.nav-folder:nth-child(8n+5) {
   background-color: color-mix(in oklch, var(--color-green) var(--folder-bg-opacity), transparent);
 }
-.nav-files-container > div > .nav-folder:nth-child(8n+6) {
+
+.nav-files-container>div>.nav-folder:nth-child(8n+6) {
   background-color: color-mix(in oklch, var(--color-cyan) var(--folder-bg-opacity), transparent);
 }
-.nav-files-container > div > .nav-folder:nth-child(8n+7) {
+
+.nav-files-container>div>.nav-folder:nth-child(8n+7) {
   background-color: color-mix(in oklch, var(--color-blue) var(--folder-bg-opacity), transparent);
 }
-.nav-files-container > div > .nav-folder:nth-child(8n+8) {
+
+.nav-files-container>div>.nav-folder:nth-child(8n+8) {
   background-color: color-mix(in oklch, var(--color-purple) var(--folder-bg-opacity), transparent);
 }
-.nav-files-container > div > .nav-folder:nth-child(8n+9) {
+
+.nav-files-container>div>.nav-folder:nth-child(8n+9) {
   background-color: color-mix(in oklch, var(--color-pink) var(--folder-bg-opacity), transparent);
 }
