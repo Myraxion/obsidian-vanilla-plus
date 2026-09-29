@@ -11,13 +11,13 @@ body {
   /* 顶部文件名（内联标题）：保持默认正文颜色，防止继承 H1 彩色 */
   --inline-title-color: var(--text-normal);
 
-  /* H1 ~ H6 6级标题原生颜色变量 */
-  --h1-color: var(--color-red, #e06c75);
-  --h2-color: var(--color-orange, #e5954a);
-  --h3-color: var(--color-yellow, #f0c653);
-  --h4-color: var(--color-green, #6ab04c);
-  --h5-color: var(--color-blue, #4a90e2);
-  --h6-color: var(--color-purple, #9b59b6);
+  /* H1 ~ H6 6级标题原生颜色变量（采用 color-mix 调和正文色，呈现温润低饱和美感） */
+  --h1-color: color-mix(in oklch, var(--color-red, #d97078) 72%, var(--text-normal));
+  --h2-color: color-mix(in oklch, var(--color-orange, #d98e5e) 72%, var(--text-normal));
+  --h3-color: color-mix(in oklch, var(--color-yellow, #cf9e54) 72%, var(--text-normal));
+  --h4-color: color-mix(in oklch, var(--color-green, #6e9d74) 72%, var(--text-normal));
+  --h5-color: color-mix(in oklch, var(--color-blue, #608ebf) 72%, var(--text-normal));
+  --h6-color: color-mix(in oklch, var(--color-purple, #9b7ebf) 72%, var(--text-normal));
 }
 
 /* -------------------------------------------------------------------
