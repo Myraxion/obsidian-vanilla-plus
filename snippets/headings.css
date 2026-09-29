@@ -10,14 +10,26 @@
 body {
   /* 顶部文件名（内联标题）：保持默认正文颜色，防止继承 H1 彩色 */
   --inline-title-color: var(--text-normal);
+}
 
-  /* H1 ~ H6 6级标题原生颜色变量（采用 color-mix 调和正文色，呈现温润低饱和美感） */
+/* 深色模式：保持当前深色下的温润莫兰迪质感（通过 color-mix 调和浅色正文） */
+.theme-dark {
   --h1-color: color-mix(in oklch, var(--color-red, #d97078) 72%, var(--text-normal));
   --h2-color: color-mix(in oklch, var(--color-orange, #d98e5e) 72%, var(--text-normal));
   --h3-color: color-mix(in oklch, var(--color-yellow, #cf9e54) 72%, var(--text-normal));
   --h4-color: color-mix(in oklch, var(--color-green, #6e9d74) 72%, var(--text-normal));
   --h5-color: color-mix(in oklch, var(--color-blue, #608ebf) 72%, var(--text-normal));
   --h6-color: color-mix(in oklch, var(--color-purple, #9b7ebf) 72%, var(--text-normal));
+}
+
+/* 浅色模式：明亮水彩柔色流 (Catppuccin Latte 风格)，清澈通透、温和柔润不发脏 */
+.theme-light {
+  --h1-color: var(--color-red-light, #e64553);    /* 柔美水彩珊瑚红 */
+  --h2-color: var(--color-orange-light, #f07c38); /* 晨曦暖杏橙 */
+  --h3-color: var(--color-yellow-light, #df8e1d); /* 清朗琥珀麦金 */
+  --h4-color: var(--color-green-light, #40a02b);  /* 生机春芽翠绿 */
+  --h5-color: var(--color-blue-light, #209fb5);   /* 碧波天青蓝 */
+  --h6-color: var(--color-purple-light, #8839ef); /* 灵动水彩紫罗兰 */
 }
 
 /* -------------------------------------------------------------------

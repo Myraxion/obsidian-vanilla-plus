@@ -4,15 +4,23 @@
  * =================================================================== */
 
 body {
-  /* 1. 粗体 (Bold)：官方原生 --bold-color 与 1.6+ 推荐的 --bold-modifier，融入正文色调呈现雅致克制的强调 */
-  --bold-color: color-mix(in oklch, var(--color-red, #d97078) 72%, var(--text-normal));
+  /* 粗体字重增强 */
   --bold-modifier: 200;
 
-  /* 2. 斜体 (Italic)：官方原生 --italic-color，温润暖色不刺眼 */
-  --italic-color: color-mix(in oklch, var(--color-orange, #d98e5e) 72%, var(--text-normal));
-
-  /* 3. 文本高亮 (Highlight)：官方原生 --text-highlight-bg 与现代 color-mix 规范 */
+  /* 文本高亮底色：官方原生与现代 color-mix 规范 */
   --text-highlight-bg: color-mix(in oklch, var(--color-yellow) 35%, transparent);
+}
+
+/* 深色模式：保持当前深色下的温润克制强调（通过 color-mix 调和浅色正文） */
+.theme-dark {
+  --bold-color: color-mix(in oklch, var(--color-red, #d97078) 72%, var(--text-normal));
+  --italic-color: color-mix(in oklch, var(--color-orange, #d98e5e) 72%, var(--text-normal));
+}
+
+/* 浅色模式：明亮水彩柔色流 (Catppuccin Latte 风格) */
+.theme-light {
+  --bold-color: var(--color-red-light, #e64553);    /* 柔美水彩珊瑚红，醒目而不血腥 */
+  --italic-color: var(--color-orange-light, #f07c38); /* 晨曦暖杏橙，温润不刺眼 */
 }
 
 /* 高亮细节：增加轻量圆角提升现代感 */
