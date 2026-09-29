@@ -1,5 +1,7 @@
 # Obsidian 原生轻量增强 CSS 代码片段 (Snippets)
 
+[English](README_en.md) | 简体中文
+
 这是一组为 Obsidian 打造的极简、轻量、高颜值的 CSS 增强片段。纯原生 CSS 驱动，开箱即用，零第三方插件依赖，旨在以最克制的设计提升日常记录与排版的视觉体验。
 
 ---
@@ -31,5 +33,5 @@
 ## 🙏 致谢与灵感来源 (Credits)
 
 本项目的部分视觉设计与样式灵感源自优秀的开源社区主题：
-- **[Border](https://github.com/akifyss/obsidian-border)** by [@akifyss](https://github.com/akifyss)：在标题动态指示条、渐隐分割线、点阵质感等细节美学上提供了极大启发，特此致敬与鸣谢。
 
+- **[Border](https://github.com/akifyss/obsidian-border)** by [@akifyss](https://github.com/akifyss)：在标题指示条、渐隐分割线、点阵质感等细节美学上提供了极大启发，特此致敬与鸣谢。
