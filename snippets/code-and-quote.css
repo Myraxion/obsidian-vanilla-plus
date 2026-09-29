@@ -1,0 +1,123 @@
+/* ===================================================================
+ * 原生增强代码片段：代码与块引用全系统 (Code & Quote System)
+ * 本质：定义亮暗模式点阵纹理，赋予内联代码、引用块及代码块（含行号）原生样式
+ * 遵循官方规范：Reference/CSS variables/Editor (Code & Blockquote)
+ * =================================================================== */
+
+/* -------------------------------------------------------------------
+ * 1. 亮/暗模式点阵纹理变量
+ * ------------------------------------------------------------------- */
+.theme-light {
+  --dot-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.08' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.theme-dark {
+  --dot-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23ffffff' fill-opacity='0.10' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+/* -------------------------------------------------------------------
+ * 2. 引用块官方原生变量
+ * ------------------------------------------------------------------- */
+body {
+  --blockquote-border-thickness: 3px;
+  --blockquote-border-color: var(--color-accent);
+  --blockquote-font-style: normal;
+}
+
+/* -------------------------------------------------------------------
+ * 3. 内联代码：粉色文字、点阵背景与圆角
+ * ------------------------------------------------------------------- */
+.markdown-rendered :not(pre)>code,
+.cm-s-obsidian span.cm-inline-code,
+.cm-line .cm-inline-code {
+  color: var(--color-pink);
+  background-image: var(--dot-pattern);
+  border-radius: var(--radius-s);
+  padding: 0.15em 0.4em;
+}
+
+/* -------------------------------------------------------------------
+ * 4. 块引用：点阵背景与圆角
+ * ------------------------------------------------------------------- */
+blockquote,
+.HyperMD-quote {
+  background-image: var(--dot-pattern);
+  border-radius: var(--radius-s);
+}
+
+/* -------------------------------------------------------------------
+ * 5. 代码块：虚线边框与点阵背景 (保持代码块内默认语法高亮)
+ * ------------------------------------------------------------------- */
+
+/* 5.1 阅读视图 */
+.markdown-rendered pre {
+  border: 1px dashed var(--background-modifier-border);
+  border-radius: var(--radius-s);
+  background-image: var(--dot-pattern);
+}
+
+.markdown-rendered pre>code {
+  background-color: transparent;
+}
+
+/* 5.2 实时预览与编辑视图（利用 :is 保证首尾行完整覆盖左右虚线与点阵） */
+:is(.HyperMD-codeblock-bg, .HyperMD-codeblock-begin-bg, .HyperMD-codeblock-end-bg) {
+  background-image: var(--dot-pattern);
+  border-left: 1px dashed var(--background-modifier-border);
+  border-right: 1px dashed var(--background-modifier-border);
+}
+
+.HyperMD-codeblock-begin-bg {
+  border-top: 1px dashed var(--background-modifier-border);
+  border-top-left-radius: var(--radius-s);
+  border-top-right-radius: var(--radius-s);
+}
+
+.HyperMD-codeblock-end-bg {
+  border-bottom: 1px dashed var(--background-modifier-border);
+  border-bottom-left-radius: var(--radius-s);
+  border-bottom-right-radius: var(--radius-s);
+}
+
+/* -------------------------------------------------------------------
+ * 6. 代码块行号指示器（纯 CSS counter 独立计数，悬停与激活聚焦）
+ * ------------------------------------------------------------------- */
+.cm-content {
+  counter-reset: code-line-counter;
+}
+
+/* 非代码行及代码块起止标记行重置计数器 */
+.cm-line:not(.HyperMD-codeblock),
+.cm-line:is(.HyperMD-codeblock-begin, .HyperMD-codeblock-end) {
+  counter-set: code-line-counter 0;
+}
+
+/* 代码块内部内容行：使用 CSS counter 显示自增行号（置于代码块外部左侧槽位，与行焦点指示器严格对齐） */
+.cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end)::after {
+  position: absolute;
+  left: -29px;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  counter-increment: code-line-counter;
+  content: counter(code-line-counter);
+  background: transparent;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-family: var(--font-monospace);
+  color: var(--text-faint);
+  pointer-events: none;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+.cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end):hover::after {
+  opacity: 0.85;
+}
+
+.cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end).cm-active::after {
+  opacity: 1;
+  color: var(--color-accent);
+}
