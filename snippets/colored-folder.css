@@ -2,58 +2,75 @@
  * 原生增强代码片段：彩色顶层文件夹 (Colored Folders)
  * 遵循官方规范：Reference/CSS variables/Foundations (Colors & Radiuses)
  * 包含模块：
- * 1. 文件夹背景透明度变量
+ * 1. 明暗模式色彩与透明度变量
  * 2. 顶层文件夹盒模型与间距
- * 3. 8 色循环背景分区
+ * 3. 7 色循环背景分区
  * =================================================================== */
 
 /* -------------------------------------------------------------------
- * 1. 文件夹背景透明度变量
+ * 1. 明暗模式色彩与透明度变量
  * ------------------------------------------------------------------- */
-:root {
+
+/* 1.1 浅色模式：继承原生色彩变量 */
+.theme-light {
   --folder-bg-opacity: 14%;
+  --folder-color-1: var(--color-red);
+  --folder-color-2: var(--color-orange);
+  --folder-color-3: var(--color-yellow);
+  --folder-color-4: var(--color-green);
+  --folder-color-5: var(--color-cyan);
+  --folder-color-6: var(--color-blue);
+  --folder-color-7: var(--color-purple);
+}
+
+/* 1.2 深色模式：高透光果冻色阶梯 */
+.theme-dark {
+  --folder-bg-opacity: 9%;
+  --folder-color-1: #ff5252;
+  --folder-color-2: #ff9f0a;
+  --folder-color-3: #ffd60a;
+  --folder-color-4: #30d158;
+  --folder-color-5: #64d2ff;
+  --folder-color-6: #409cff;
+  --folder-color-7: #bf5af2;
 }
 
 /* -------------------------------------------------------------------
  * 2. 顶层文件夹盒模型与间距
  * ------------------------------------------------------------------- */
-.nav-files-container > div > .nav-folder {
+.nav-files-container>div>.nav-folder {
   border-radius: var(--radius-m, 4px);
   padding-block: var(--size-4-1, 4px);
   margin-block: var(--size-4-1, 4px);
 }
 
 /* -------------------------------------------------------------------
- * 3. 8 色循环背景分区 (基于原生色彩变量与 color-mix)
+ * 3. 7 色循环背景分区 (基于模式变量与 color-mix)
  * ------------------------------------------------------------------- */
-.nav-files-container > div > .nav-folder:nth-child(8n+2) {
-  background-color: color-mix(in oklch, var(--color-red) var(--folder-bg-opacity), transparent);
+.nav-files-container>div>.nav-folder:nth-child(7n+2) {
+  background-color: color-mix(in oklch, var(--folder-color-1) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container > div > .nav-folder:nth-child(8n+3) {
-  background-color: color-mix(in oklch, var(--color-orange) var(--folder-bg-opacity), transparent);
+.nav-files-container>div>.nav-folder:nth-child(7n+3) {
+  background-color: color-mix(in oklch, var(--folder-color-2) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container > div > .nav-folder:nth-child(8n+4) {
-  background-color: color-mix(in oklch, var(--color-yellow) var(--folder-bg-opacity), transparent);
+.nav-files-container>div>.nav-folder:nth-child(7n+4) {
+  background-color: color-mix(in oklch, var(--folder-color-3) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container > div > .nav-folder:nth-child(8n+5) {
-  background-color: color-mix(in oklch, var(--color-green) var(--folder-bg-opacity), transparent);
+.nav-files-container>div>.nav-folder:nth-child(7n+5) {
+  background-color: color-mix(in oklch, var(--folder-color-4) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container > div > .nav-folder:nth-child(8n+6) {
-  background-color: color-mix(in oklch, var(--color-cyan) var(--folder-bg-opacity), transparent);
+.nav-files-container>div>.nav-folder:nth-child(7n+6) {
+  background-color: color-mix(in oklch, var(--folder-color-5) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container > div > .nav-folder:nth-child(8n+7) {
-  background-color: color-mix(in oklch, var(--color-blue) var(--folder-bg-opacity), transparent);
+.nav-files-container>div>.nav-folder:nth-child(7n+7) {
+  background-color: color-mix(in oklch, var(--folder-color-6) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container > div > .nav-folder:nth-child(8n+8) {
-  background-color: color-mix(in oklch, var(--color-purple) var(--folder-bg-opacity), transparent);
-}
-
-.nav-files-container > div > .nav-folder:nth-child(8n+9) {
-  background-color: color-mix(in oklch, var(--color-pink) var(--folder-bg-opacity), transparent);
+.nav-files-container>div>.nav-folder:nth-child(7n+8) {
+  background-color: color-mix(in oklch, var(--folder-color-7) var(--folder-bg-opacity), transparent);
 }
