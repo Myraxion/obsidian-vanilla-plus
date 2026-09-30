@@ -16,11 +16,14 @@
   left: -20px;
   top: 3px;
   width: 3px;
-  height: 0;
+  height: calc(100% - 6px);
   border-radius: var(--radius-s, 3px);
   background-color: var(--text-faint);
   pointer-events: none;
-  transition: height 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
 }
 
 /* -------------------------------------------------------------------
@@ -29,11 +32,13 @@
 
 /* 鼠标悬停展开 */
 .cm-line:not(.HyperMD-header, .HyperMD-codeblock):hover::after {
-  height: calc(100% - 6px);
+  opacity: 1;
+  transform: scaleY(1);
 }
 
 /* 光标激活行高亮展开 */
 .cm-line:not(.HyperMD-header, .HyperMD-codeblock).cm-active::after {
-  height: calc(100% - 6px);
+  opacity: 1;
+  transform: scaleY(1);
   background-color: var(--color-accent);
 }
