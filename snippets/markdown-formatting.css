@@ -3,16 +3,17 @@
  * 遵循官方规范：Reference/CSS variables/Foundations
  * 包含模块：
  * 1. 文本格式原生变量（粗体字重、高亮底色、明暗模式粗斜体色彩）
- * 2. 文本高亮 (Highlight)
- * 3. 删除线 (Strikethrough)
- * 4. 键盘按键 (KBD)
+ * 2. 粗体背景底色 (Bold Background)
+ * 3. 文本高亮 (Highlight)
+ * 4. 删除线 (Strikethrough)
+ * 5. 键盘按键 (KBD)
  * =================================================================== */
 
 /* -------------------------------------------------------------------
  * 1. 文本格式原生变量
  * ------------------------------------------------------------------- */
 
-/* 基础排版变量：粗体字重增强与文本高亮底色 */
+/* 基础排版变量：粗体字重与文本高亮底色 */
 body {
   --bold-modifier: 200;
   --text-highlight-bg: color-mix(in oklch, var(--color-yellow) 35%, transparent);
@@ -20,18 +21,27 @@ body {
 
 /* 深色模式：粗体与斜体色彩 */
 .theme-dark {
-  --bold-color: #f87a75;
-  --italic-color: #e7ab72;
+  --bold-color: #ededed;
+  --italic-color: var(--text-muted);
 }
 
 /* 浅色模式：粗体与斜体色彩 */
 .theme-light {
-  --bold-color: #e64553;
-  --italic-color: #f07c38;
+  --bold-color: #2b2b2b;
+  --italic-color: var(--text-muted);
 }
 
 /* -------------------------------------------------------------------
- * 2. 文本高亮 (Highlight)
+ * 2. 粗体背景底色 (Bold Background)
+ * ------------------------------------------------------------------- */
+:is(strong, .cm-strong) {
+  background-color: color-mix(in oklch, var(--background-modifier-hover) 70%, transparent);
+  padding: 0.04em 0.2em;
+  border-radius: var(--radius-s, 3px);
+}
+
+/* -------------------------------------------------------------------
+ * 3. 文本高亮 (Highlight)
  * ------------------------------------------------------------------- */
 mark,
 .cm-highlight {
@@ -40,7 +50,7 @@ mark,
 }
 
 /* -------------------------------------------------------------------
- * 3. 删除线 (Strikethrough)
+ * 4. 删除线 (Strikethrough)
  * ------------------------------------------------------------------- */
 s,
 del,
@@ -49,7 +59,7 @@ del,
 }
 
 /* -------------------------------------------------------------------
- * 4. 键盘按键 (KBD)
+ * 5. 键盘按键 (KBD)
  * ------------------------------------------------------------------- */
 kbd {
   background-color: var(--background-modifier-hover);
