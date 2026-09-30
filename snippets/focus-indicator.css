@@ -1,10 +1,15 @@
 /* ===================================================================
  * 原生增强代码片段：行焦点指示器 (Line Focus Indicator)
- * 本质：利用 .cm-line 的伪元素实现普通文本行悬停展开与光标活动行高亮
  * 遵循官方规范：Reference/CSS variables/Foundations (Colors & Radius)
+ * 包含模块：
+ * 1. 指示条基础布局与过渡动效
+ * 2. 悬停与光标激活状态展开
  * =================================================================== */
 
-/* 基础行焦点指示条（悬停展开，光标活动行高亮；标题行由专属标题彩条系统接管，代码行由代码块行号接管） */
+/* -------------------------------------------------------------------
+ * 1. 指示条基础布局与过渡动效
+ * 排除标题行（由标题彩条接管）与代码行（由行号接管）
+ * ------------------------------------------------------------------- */
 .cm-line:not(.HyperMD-header, .HyperMD-codeblock)::after {
   content: "";
   position: absolute;
@@ -18,10 +23,16 @@
   transition: height 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
 }
 
+/* -------------------------------------------------------------------
+ * 2. 悬停与光标激活状态展开
+ * ------------------------------------------------------------------- */
+
+/* 鼠标悬停展开 */
 .cm-line:not(.HyperMD-header, .HyperMD-codeblock):hover::after {
   height: calc(100% - 6px);
 }
 
+/* 光标激活行高亮展开 */
 .cm-line:not(.HyperMD-header, .HyperMD-codeblock).cm-active::after {
   height: calc(100% - 6px);
   background-color: var(--color-accent);

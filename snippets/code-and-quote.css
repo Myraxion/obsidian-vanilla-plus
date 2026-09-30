@@ -1,11 +1,17 @@
 /* ===================================================================
  * 原生增强代码片段：代码与块引用全系统 (Code & Quote System)
- * 本质：定义亮暗模式点阵纹理，赋予内联代码、引用块及代码块（含行号）原生样式
  * 遵循官方规范：Reference/CSS variables/Editor (Code & Blockquote)
+ * 包含模块：
+ * 1. 明暗模式点阵纹理变量
+ * 2. 引用块原生变量
+ * 3. 内联代码 (Inline Code)
+ * 4. 块引用 (Blockquote)
+ * 5. 代码块 (Code Block)
+ * 6. 代码块行号指示器 (Line Numbers)
  * =================================================================== */
 
 /* -------------------------------------------------------------------
- * 1. 亮/暗模式点阵纹理变量
+ * 1. 明暗模式点阵纹理变量
  * ------------------------------------------------------------------- */
 .theme-light {
   --dot-pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.08' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
@@ -16,7 +22,7 @@
 }
 
 /* -------------------------------------------------------------------
- * 2. 引用块官方原生变量
+ * 2. 引用块原生变量
  * ------------------------------------------------------------------- */
 body {
   --blockquote-border-thickness: 3px;
@@ -25,7 +31,7 @@ body {
 }
 
 /* -------------------------------------------------------------------
- * 3. 内联代码：粉色文字、点阵背景与圆角
+ * 3. 内联代码 (Inline Code)
  * ------------------------------------------------------------------- */
 .markdown-rendered :not(pre)>code,
 .cm-s-obsidian span.cm-inline-code,
@@ -37,7 +43,7 @@ body {
 }
 
 /* -------------------------------------------------------------------
- * 4. 块引用：点阵背景与圆角
+ * 4. 块引用 (Blockquote)
  * ------------------------------------------------------------------- */
 blockquote,
 .HyperMD-quote {
@@ -46,7 +52,7 @@ blockquote,
 }
 
 /* -------------------------------------------------------------------
- * 5. 代码块：虚线边框与点阵背景 (保持代码块内默认语法高亮)
+ * 5. 代码块 (Code Block)
  * ------------------------------------------------------------------- */
 
 /* 5.1 阅读视图 */
@@ -60,7 +66,7 @@ blockquote,
   background-color: transparent;
 }
 
-/* 5.2 实时预览与编辑视图（利用 :is 保证首尾行完整覆盖左右虚线与点阵） */
+/* 5.2 实时预览与编辑视图 */
 :is(.HyperMD-codeblock-bg, .HyperMD-codeblock-begin-bg, .HyperMD-codeblock-end-bg) {
   background-image: var(--dot-pattern);
   border-left: 1px dashed var(--background-modifier-border);
@@ -80,19 +86,20 @@ blockquote,
 }
 
 /* -------------------------------------------------------------------
- * 6. 代码块行号指示器（纯 CSS counter 独立计数，悬停与激活聚焦）
+ * 6. 代码块行号指示器 (Line Numbers)
  * ------------------------------------------------------------------- */
+
+/* 6.1 初始化与重置计数器（仅在代码内容行内计数） */
 .cm-content {
   counter-reset: code-line-counter;
 }
 
-/* 非代码行及代码块起止标记行重置计数器 */
 .cm-line:not(.HyperMD-codeblock),
 .cm-line:is(.HyperMD-codeblock-begin, .HyperMD-codeblock-end) {
   counter-set: code-line-counter 0;
 }
 
-/* 代码块内部内容行：使用 CSS counter 显示自增行号（置于代码块外部左侧槽位，与行焦点指示器严格对齐） */
+/* 6.2 代码内容行自增计数与定位展示 */
 .cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end)::after {
   position: absolute;
   left: -29px;
@@ -113,6 +120,7 @@ blockquote,
   transition: opacity 0.15s ease, color 0.15s ease;
 }
 
+/* 6.3 悬停与激活聚焦状态 */
 .cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end):hover::after {
   opacity: 0.85;
 }

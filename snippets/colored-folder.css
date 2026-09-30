@@ -1,50 +1,59 @@
 /* ===================================================================
  * 原生增强代码片段：彩色顶层文件夹 (Colored Folders)
- * 本质：基于 Obsidian 官方原生调色板与 color-mix，为文件列表顶层目录实现多色半透明分区
  * 遵循官方规范：Reference/CSS variables/Foundations (Colors & Radiuses)
+ * 包含模块：
+ * 1. 文件夹背景透明度变量
+ * 2. 顶层文件夹盒模型与间距
+ * 3. 8 色循环背景分区
  * =================================================================== */
 
+/* -------------------------------------------------------------------
+ * 1. 文件夹背景透明度变量
+ * ------------------------------------------------------------------- */
 :root {
-  /* 淡雅通透度：从 18% 降至 10%，符合 Radix/Linear 微色彩空间规范，呈现若隐若现的温润水墨/薄雾感 */
   --folder-bg-opacity: 14%;
 }
 
-/* 1. 顶层文件夹公共盒模型与圆角 */
-.nav-files-container>div>.nav-folder {
+/* -------------------------------------------------------------------
+ * 2. 顶层文件夹盒模型与间距
+ * ------------------------------------------------------------------- */
+.nav-files-container > div > .nav-folder {
   border-radius: var(--radius-m, 4px);
   padding-block: var(--size-4-1, 4px);
   margin-block: var(--size-4-1, 4px);
 }
 
-/* 2. 8 色循环半透明背景分区 (基于官方原生调色板与现代 color-mix 规范) */
-.nav-files-container>div>.nav-folder:nth-child(8n+2) {
+/* -------------------------------------------------------------------
+ * 3. 8 色循环背景分区 (基于原生色彩变量与 color-mix)
+ * ------------------------------------------------------------------- */
+.nav-files-container > div > .nav-folder:nth-child(8n+2) {
   background-color: color-mix(in oklch, var(--color-red) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container>div>.nav-folder:nth-child(8n+3) {
+.nav-files-container > div > .nav-folder:nth-child(8n+3) {
   background-color: color-mix(in oklch, var(--color-orange) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container>div>.nav-folder:nth-child(8n+4) {
+.nav-files-container > div > .nav-folder:nth-child(8n+4) {
   background-color: color-mix(in oklch, var(--color-yellow) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container>div>.nav-folder:nth-child(8n+5) {
+.nav-files-container > div > .nav-folder:nth-child(8n+5) {
   background-color: color-mix(in oklch, var(--color-green) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container>div>.nav-folder:nth-child(8n+6) {
+.nav-files-container > div > .nav-folder:nth-child(8n+6) {
   background-color: color-mix(in oklch, var(--color-cyan) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container>div>.nav-folder:nth-child(8n+7) {
+.nav-files-container > div > .nav-folder:nth-child(8n+7) {
   background-color: color-mix(in oklch, var(--color-blue) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container>div>.nav-folder:nth-child(8n+8) {
+.nav-files-container > div > .nav-folder:nth-child(8n+8) {
   background-color: color-mix(in oklch, var(--color-purple) var(--folder-bg-opacity), transparent);
 }
 
-.nav-files-container>div>.nav-folder:nth-child(8n+9) {
+.nav-files-container > div > .nav-folder:nth-child(8n+9) {
   background-color: color-mix(in oklch, var(--color-pink) var(--folder-bg-opacity), transparent);
 }
