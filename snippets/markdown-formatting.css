@@ -11,16 +11,20 @@ body {
   --text-highlight-bg: color-mix(in oklch, var(--color-yellow) 35%, transparent);
 }
 
-/* 深色模式：保持当前深色下的温润克制强调（通过 color-mix 调和浅色正文） */
+/* 深色模式：保持温润克制强调 (纯净精调 HEX) */
 .theme-dark {
-  --bold-color: color-mix(in oklch, var(--color-red, #d97078) 72%, var(--text-normal));
-  --italic-color: color-mix(in oklch, var(--color-orange, #d98e5e) 72%, var(--text-normal));
+  --bold-color: #f87a75;
+  /* 柔和珊瑚暖红 */
+  --italic-color: #e7ab72;
+  /* 晨曦柔杏橙 */
 }
 
 /* 浅色模式：明亮水彩柔色流 (Catppuccin Latte 风格) */
 .theme-light {
-  --bold-color: var(--color-red-light, #e64553);    /* 柔美水彩珊瑚红，醒目而不血腥 */
-  --italic-color: var(--color-orange-light, #f07c38); /* 晨曦暖杏橙，温润不刺眼 */
+  --bold-color: #e64553;
+  /* 柔美水彩珊瑚红，醒目而不血腥 */
+  --italic-color: #f07c38;
+  /* 晨曦暖杏橙，温润不刺眼 */
 }
 
 /* 高亮细节：增加轻量圆角提升现代感 */

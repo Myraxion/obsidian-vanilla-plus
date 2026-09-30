@@ -12,24 +12,36 @@ body {
   --inline-title-color: var(--text-normal);
 }
 
-/* 深色模式：保持当前深色下的温润莫兰迪质感（通过 color-mix 调和浅色正文） */
+/* 深色模式：温润莫兰迪色阶 (纯净精调 HEX，所见即所得) */
 .theme-dark {
-  --h1-color: color-mix(in oklch, var(--color-red, #d97078) 72%, var(--text-normal));
-  --h2-color: color-mix(in oklch, var(--color-orange, #d98e5e) 72%, var(--text-normal));
-  --h3-color: color-mix(in oklch, var(--color-yellow, #cf9e54) 72%, var(--text-normal));
-  --h4-color: color-mix(in oklch, var(--color-green, #6e9d74) 72%, var(--text-normal));
-  --h5-color: color-mix(in oklch, var(--color-blue, #608ebf) 72%, var(--text-normal));
-  --h6-color: color-mix(in oklch, var(--color-purple, #9b7ebf) 72%, var(--text-normal));
+  --h1-color: #f87a75;
+  /* 柔和珊瑚暖红 */
+  --h2-color: #e7ab72;
+  /* 晨曦柔杏橙 */
+  --h3-color: #dedd93;
+  /* 清朗麦草黄 */
+  --h4-color: #7bd38e;
+  /* 生机嫩芽绿 */
+  --h5-color: #5699f8;
+  /* 清朗晴空蓝 */
+  --h6-color: #b59df7;
+  /* 柔美薰衣草紫 */
 }
 
-/* 浅色模式：明亮水彩柔色流 (Catppuccin Latte 风格)，清澈通透、温和柔润不发脏 */
+/* 浅色模式：明亮水彩柔色流 (Catppuccin Latte 风格)，清澈通透、明亮柔润 */
 .theme-light {
-  --h1-color: var(--color-red-light, #e64553);    /* 柔美水彩珊瑚红 */
-  --h2-color: var(--color-orange-light, #f07c38); /* 晨曦暖杏橙 */
-  --h3-color: var(--color-yellow-light, #df8e1d); /* 清朗琥珀麦金 */
-  --h4-color: var(--color-green-light, #40a02b);  /* 生机春芽翠绿 */
-  --h5-color: var(--color-blue-light, #209fb5);   /* 碧波天青蓝 */
-  --h6-color: var(--color-purple-light, #8839ef); /* 灵动水彩紫罗兰 */
+  --h1-color: #e64553;
+  /* 柔美水彩珊瑚红 */
+  --h2-color: #f07c38;
+  /* 晨曦暖杏橙 */
+  --h3-color: #df8e1d;
+  /* 清朗琥珀麦金 */
+  --h4-color: #40a02b;
+  /* 生机春芽翠绿 */
+  --h5-color: #209fb5;
+  /* 碧波天青蓝 */
+  --h6-color: #8839ef;
+  /* 灵动水彩紫罗兰 */
 }
 
 /* -------------------------------------------------------------------
@@ -66,9 +78,12 @@ body {
  * 结构：[ 槽位1: H1折叠徽标 ] ──(间距)── [ 槽位2: 垂直彩条 ] ──(间距)── 标题文字
  * ------------------------------------------------------------------- */
 :root {
-  --heading-gutter-gap: 6px;     /* 元素之间的呼吸间距 */
-  --heading-bar-width: 3px;      /* 垂直彩条宽度 */
-  --heading-badge-offset: -16px; /* 折叠徽标向左平移量（严密推移至彩条左侧，永不重叠） */
+  --heading-gutter-gap: 6px;
+  /* 元素之间的呼吸间距 */
+  --heading-bar-width: 3px;
+  /* 垂直彩条宽度 */
+  --heading-badge-offset: -16px;
+  /* 折叠徽标向左平移量（严密推移至彩条左侧，永不重叠） */
 }
 
 /* 3.1 槽位2：标题左侧竖条指示标（高度随字号 0.68em 自适应，悬停/聚焦平滑展开） */
@@ -96,12 +111,29 @@ body {
 }
 
 /* 各级标题彩条对应颜色 */
-:is(h1, .HyperMD-header-1)::before { background-color: var(--h1-color); }
-:is(h2, .HyperMD-header-2)::before { background-color: var(--h2-color); }
-:is(h3, .HyperMD-header-3)::before { background-color: var(--h3-color); }
-:is(h4, .HyperMD-header-4)::before { background-color: var(--h4-color); }
-:is(h5, .HyperMD-header-5)::before { background-color: var(--h5-color); }
-:is(h6, .HyperMD-header-6)::before { background-color: var(--h6-color); }
+:is(h1, .HyperMD-header-1)::before {
+  background-color: var(--h1-color);
+}
+
+:is(h2, .HyperMD-header-2)::before {
+  background-color: var(--h2-color);
+}
+
+:is(h3, .HyperMD-header-3)::before {
+  background-color: var(--h3-color);
+}
+
+:is(h4, .HyperMD-header-4)::before {
+  background-color: var(--h4-color);
+}
+
+:is(h5, .HyperMD-header-5)::before {
+  background-color: var(--h5-color);
+}
+
+:is(h6, .HyperMD-header-6)::before {
+  background-color: var(--h6-color);
+}
 
 /* 3.2 槽位1：标题折叠图标转换为 H1~H6 矢量层级徽标 */
 :is(h1, h2, h3, h4, h5, h6, .HyperMD-header) .collapse-indicator {
@@ -165,9 +197,32 @@ body {
 }
 
 /* 3.3 折叠状态下高亮对应层级标题色 */
-:is(h1, .HyperMD-header-1).is-collapsed .collapse-indicator svg { background-color: var(--h1-color); opacity: 1; }
-:is(h2, .HyperMD-header-2).is-collapsed .collapse-indicator svg { background-color: var(--h2-color); opacity: 1; }
-:is(h3, .HyperMD-header-3).is-collapsed .collapse-indicator svg { background-color: var(--h3-color); opacity: 1; }
-:is(h4, .HyperMD-header-4).is-collapsed .collapse-indicator svg { background-color: var(--h4-color); opacity: 1; }
-:is(h5, .HyperMD-header-5).is-collapsed .collapse-indicator svg { background-color: var(--h5-color); opacity: 1; }
-:is(h6, .HyperMD-header-6).is-collapsed .collapse-indicator svg { background-color: var(--h6-color); opacity: 1; }
+:is(h1, .HyperMD-header-1).is-collapsed .collapse-indicator svg {
+  background-color: var(--h1-color);
+  opacity: 1;
+}
+
+:is(h2, .HyperMD-header-2).is-collapsed .collapse-indicator svg {
+  background-color: var(--h2-color);
+  opacity: 1;
+}
+
+:is(h3, .HyperMD-header-3).is-collapsed .collapse-indicator svg {
+  background-color: var(--h3-color);
+  opacity: 1;
+}
+
+:is(h4, .HyperMD-header-4).is-collapsed .collapse-indicator svg {
+  background-color: var(--h4-color);
+  opacity: 1;
+}
+
+:is(h5, .HyperMD-header-5).is-collapsed .collapse-indicator svg {
+  background-color: var(--h5-color);
+  opacity: 1;
+}
+
+:is(h6, .HyperMD-header-6).is-collapsed .collapse-indicator svg {
+  background-color: var(--h6-color);
+  opacity: 1;
+}
