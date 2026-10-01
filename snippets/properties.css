@@ -3,8 +3,8 @@
  * 遵循官方规范：Reference/CSS variables/Editor/Properties.md
  * 包含模块：
  * 1. 属性底层原生变量 (Properties Variables)
- * 2. 标题排版与状态解耦 (Heading Typography & States)
- * 3. 标题内联组件 (Heading Inner Components)
+ * 2. 标题排版与状态交互 (Heading Typography & States)
+ * 3. 标题内联折叠指示器 (Collapse Indicator)
  * 4. 容器外边距布局 (Container Margins)
  * =================================================================== */
 
@@ -19,9 +19,9 @@ body {
 }
 
 /* -------------------------------------------------------------------
- * 2. 标题排版与状态解耦 (Heading Typography & States)
+ * 2. 标题排版与状态交互 (Heading Typography & States)
  * ------------------------------------------------------------------- */
-/* 标题基础布局：无边框左对齐基准，折叠展开绝对零位移 */
+/* 默认展开态：直接定义默认视觉基准 */
 .metadata-properties-heading {
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@ body {
   padding: 2px 0;
   border: none;
   background: transparent;
-  color: var(--text-faint);
+  color: var(--text-muted);
   font-size: var(--font-ui-smaller);
   line-height: 1;
   cursor: pointer;
@@ -39,27 +39,19 @@ body {
   transition: opacity var(--duration-fast) ease, color var(--duration-fast) ease;
 }
 
-/* 折叠状态：低透明度中性降权 */
+/* 折叠状态：降权为微弱文本色与半透明 */
 .metadata-container.is-collapsed .metadata-properties-heading {
   opacity: 0.6;
+  color: var(--text-faint);
 }
 
-/* 展开状态：自然中性对比度 */
-.metadata-container:not(.is-collapsed) .metadata-properties-heading {
-  opacity: 1;
-  color: var(--text-muted);
-}
-
-/* 鼠标悬停交互状态 */
+/* 鼠标悬停交互状态：覆盖默认态与折叠态 */
 .metadata-properties-heading:hover {
   opacity: 1;
-  color: var(--text-muted);
+  color: var(--text-normal);
 }
 
-/* -------------------------------------------------------------------
- * 3. 标题内联组件 (Heading Inner Components)
- * ------------------------------------------------------------------- */
-/* 重置标题文本字号与字重 */
+/* 重置标题文本字重，继承颜色与字号 */
 .metadata-properties-title {
   display: inline;
   color: inherit;
@@ -70,9 +62,12 @@ body {
   padding: 0;
 }
 
-/* 折叠指示标与内部图标继承标题文本色，常态隐形 */
-.metadata-properties-heading :is(.collapse-indicator, .collapse-indicator svg),
-.metadata-container.is-collapsed .metadata-properties-heading :is(.collapse-indicator, .collapse-indicator svg) {
+/* -------------------------------------------------------------------
+ * 3. 标题内联折叠指示器 (Collapse Indicator)
+ * ------------------------------------------------------------------- */
+/* 常态完全隐形（同时压制原生折叠态下的强制可见性） */
+.metadata-properties-heading .collapse-indicator,
+.metadata-container.is-collapsed .collapse-indicator {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -83,22 +78,19 @@ body {
   transition: opacity var(--duration-fast) ease;
 }
 
-/* 鼠标悬停时平滑显现折叠指示标（覆盖折叠与展开两态） */
-.metadata-properties-heading:hover :is(.collapse-indicator, .collapse-indicator svg),
-.metadata-container.is-collapsed .metadata-properties-heading:hover :is(.collapse-indicator, .collapse-indicator svg) {
+/* 鼠标悬停标题时平滑显现折叠指示标 */
+.metadata-properties-heading:hover .collapse-indicator {
   opacity: 0.8;
 }
 
 /* -------------------------------------------------------------------
  * 4. 容器外边距布局 (Container Margins)
  * ------------------------------------------------------------------- */
-/* 容器外边距 */
 .metadata-container {
   margin-top: 0;
-  margin-bottom: var(--size-4-2);
+  margin-bottom: var(--size-4-3);
 }
 
-/* 折叠状态下的底部外边距 */
 .metadata-container.is-collapsed {
-  margin-bottom: var(--size-4-3);
+  margin-bottom: var(--size-4-2);
 }
