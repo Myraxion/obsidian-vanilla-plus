@@ -10,8 +10,8 @@
  * 1. 引用块原生变量
  * ------------------------------------------------------------------- */
 body {
-  --blockquote-border-thickness: 3px;
-  --blockquote-border-color: var(--color-accent);
+  --blockquote-border-thickness: 7px;
+  --blockquote-border-color: var(--text-faint);
   --blockquote-font-style: normal;
   --blockquote-background-color: color-mix(in oklch, var(--color-accent) 4%, transparent);
 }
