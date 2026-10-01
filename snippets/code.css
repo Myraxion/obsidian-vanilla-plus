@@ -1,13 +1,11 @@
 /* ===================================================================
- * 原生增强代码片段：代码与块引用全系统 (Code & Quote System)
- * 遵循官方规范：Reference/CSS variables/Editor (Code & Blockquote)
+ * 原生增强代码片段：代码全系统 (Code System)
+ * 遵循官方规范：Reference/CSS variables/Editor (Code)
  * 包含模块：
  * 1. 明暗模式点阵纹理变量
- * 2. 引用块原生变量
- * 3. 内联代码 (Inline Code)
- * 4. 块引用 (Blockquote)
- * 5. 代码块 (Code Block)
- * 6. 代码块行号指示器 (Line Numbers)
+ * 2. 内联代码 (Inline Code)
+ * 3. 代码块容器与边框 (Code Block)
+ * 4. 代码块行号指示器 (Line Numbers)
  * =================================================================== */
 
 /* -------------------------------------------------------------------
@@ -22,17 +20,7 @@
 }
 
 /* -------------------------------------------------------------------
- * 2. 引用块原生变量
- * ------------------------------------------------------------------- */
-body {
-  --blockquote-border-thickness: 3px;
-  --blockquote-border-color: var(--color-accent);
-  --blockquote-font-style: normal;
-  --blockquote-background-color: color-mix(in oklch, var(--color-accent) 4%, transparent);
-}
-
-/* -------------------------------------------------------------------
- * 3. 内联代码 (Inline Code)
+ * 2. 内联代码 (Inline Code)
  * ------------------------------------------------------------------- */
 .markdown-rendered :not(pre)>code,
 .cm-s-obsidian span.cm-inline-code,
@@ -44,24 +32,10 @@ body {
 }
 
 /* -------------------------------------------------------------------
- * 4. 块引用 (Blockquote)
- * ------------------------------------------------------------------- */
-blockquote,
-.HyperMD-quote {
-  background-color: var(--blockquote-background-color);
-  background-image:
-    linear-gradient(to right, color-mix(in oklch, var(--color-accent) 12%, transparent) 1px, transparent 1px),
-    linear-gradient(to bottom, color-mix(in oklch, var(--color-accent) 12%, transparent) 1px, transparent 1px);
-  background-size: 18px 18px;
-  border-radius: var(--radius-s);
-  padding: 0.3em 0.8em;
-}
-
-/* -------------------------------------------------------------------
- * 5. 代码块 (Code Block)
+ * 3. 代码块 (Code Block)
  * ------------------------------------------------------------------- */
 
-/* 5.1 阅读视图 */
+/* 3.1 阅读视图 */
 .markdown-rendered pre {
   border: 1px dashed var(--background-modifier-border);
   border-radius: var(--radius-s);
@@ -72,7 +46,7 @@ blockquote,
   background-color: transparent;
 }
 
-/* 5.2 实时预览与编辑视图 */
+/* 3.2 实时预览与编辑视图 */
 :is(.HyperMD-codeblock-bg, .HyperMD-codeblock-begin-bg, .HyperMD-codeblock-end-bg) {
   background-image: var(--dot-pattern);
   border-left: 1px dashed var(--background-modifier-border);
@@ -92,10 +66,10 @@ blockquote,
 }
 
 /* -------------------------------------------------------------------
- * 6. 代码块行号指示器 (Line Numbers)
+ * 4. 代码块行号指示器 (Line Numbers)
  * ------------------------------------------------------------------- */
 
-/* 6.1 初始化与重置计数器（仅在代码内容行内计数） */
+/* 4.1 初始化与重置计数器（仅在代码内容行内计数） */
 .cm-content {
   counter-reset: code-line-counter;
 }
@@ -105,7 +79,7 @@ blockquote,
   counter-set: code-line-counter 0;
 }
 
-/* 6.2 代码内容行自增计数与定位展示 */
+/* 4.2 代码内容行自增计数与定位展示 */
 .cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end)::after {
   position: absolute;
   left: -29px;
@@ -126,7 +100,7 @@ blockquote,
   transition: opacity 0.15s ease, color 0.15s ease;
 }
 
-/* 6.3 悬停与激活聚焦状态 */
+/* 4.3 悬停与激活聚焦状态 */
 .cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end):hover::after {
   opacity: 0.85;
 }
