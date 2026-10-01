@@ -8,9 +8,9 @@
 
 /* -------------------------------------------------------------------
  * 1. 指示条基础布局与过渡动效
- * 排除标题行（由标题彩条接管）与代码行（由行号接管）
+ * 排除标题行（由 headings.css 专属彩条接管）
  * ------------------------------------------------------------------- */
-.cm-line:not(.HyperMD-header, .HyperMD-codeblock)::after {
+.cm-line:not(.HyperMD-header)::after {
   content: "";
   position: absolute;
   left: -20px;
@@ -31,13 +31,13 @@
  * ------------------------------------------------------------------- */
 
 /* 鼠标悬停展开 */
-.cm-line:not(.HyperMD-header, .HyperMD-codeblock):hover::after {
+.cm-line:not(.HyperMD-header):hover::after {
   opacity: 1;
   transform: scaleY(1);
 }
 
 /* 光标激活行高亮展开 */
-.cm-line:not(.HyperMD-header, .HyperMD-codeblock).cm-active::after {
+.cm-line:not(.HyperMD-header).cm-active::after {
   opacity: 1;
   transform: scaleY(1);
   background-color: var(--color-accent);

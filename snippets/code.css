@@ -5,7 +5,7 @@
  * 1. 明暗模式点阵纹理变量
  * 2. 内联代码 (Inline Code)
  * 3. 代码块容器与边框 (Code Block)
- * 4. 代码块行号指示器 (Line Numbers)
+ * 4. 代码块行号指示器 (Line Numbers) [已归档注释]
  * =================================================================== */
 
 /* -------------------------------------------------------------------
@@ -66,10 +66,16 @@
 }
 
 /* -------------------------------------------------------------------
- * 4. 代码块行号指示器 (Line Numbers)
+ * 4. 代码块行号指示器 (Line Numbers) [已归档注释]
+ * 说明：由于 CodeMirror 6 的虚拟滚动（Virtual Scrolling）机制，
+ * 超出一屏的长代码块滚动时前序 DOM 节点会被卸载，导致 CSS 计数器基准重置。
+ * 为保证文档稳定性并与 focus-indicator.css 的微指示条统一体验，
+ * 默认注释本模块。如需全局精准绝对行号，推荐开启 Obsidian 原生
+ * 「设置 -> 编辑器 -> 显示行号」。
  * ------------------------------------------------------------------- */
 
-/* 4.1 初始化与重置计数器（仅在代码内容行内计数） */
+/*
+4.1 初始化与重置计数器（仅在代码内容行内计数）
 .cm-content {
   counter-reset: code-line-counter;
 }
@@ -79,7 +85,7 @@
   counter-set: code-line-counter 0;
 }
 
-/* 4.2 代码内容行自增计数与定位展示 */
+4.2 代码内容行自增计数与定位展示
 .cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end)::after {
   position: absolute;
   left: -29px;
@@ -100,7 +106,7 @@
   transition: opacity 0.15s ease, color 0.15s ease;
 }
 
-/* 4.3 悬停与激活聚焦状态 */
+4.3 悬停与激活聚焦状态
 .cm-line.HyperMD-codeblock:not(.HyperMD-codeblock-begin, .HyperMD-codeblock-end):hover::after {
   opacity: 0.85;
 }
@@ -109,3 +115,4 @@
   opacity: 1;
   color: var(--color-accent);
 }
+*/
