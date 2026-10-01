@@ -12,6 +12,7 @@
  * 1. 属性底层原生变量 (Properties Variables)
  * ------------------------------------------------------------------- */
 body {
+  --metadata-display-reading: none;
   --metadata-padding: 0;
   --metadata-border-width: 0;
   --metadata-label-font-size: var(--font-ui-smaller);
