@@ -1,0 +1,79 @@
+/* ===================================================================
+ * 原生增强代码片段：属性全系统 (Properties System)
+ * 遵循官方规范：Reference/CSS variables/Editor (Properties)
+ * 包含模块：
+ * 1. 微型属性徽章条 (Compact Metadata Pill)
+ * 2. 徽章内部组件与微指示标 (Pill Components & Indicator)
+ * 3. 容器排版与呼吸间距 (Container Rhythm)
+ * =================================================================== */
+
+/* -------------------------------------------------------------------
+ * 1. 微型属性徽章条 (Compact Metadata Pill)
+ * ------------------------------------------------------------------- */
+/* 将头部收拢为自适应微型胶囊，静音降权，提供明确的交互边界 */
+.metadata-properties-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+  min-height: unset;
+  padding: 2px 8px 2px 5px;
+  border-radius: var(--radius-m);
+  border: 1px solid color-mix(in oklch, var(--text-normal) 8%, transparent);
+  background-color: color-mix(in oklch, var(--text-normal) 4%, transparent);
+  color: var(--text-faint);
+  font-size: var(--font-ui-smaller);
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.6;
+  transition: opacity var(--duration-fast) ease, background-color var(--duration-fast) ease, border-color var(--duration-fast) ease, color var(--duration-fast) ease;
+}
+
+/* 悬停唤醒：平滑恢复清晰度与实体底衬 */
+.metadata-properties-heading:hover {
+  opacity: 1;
+  color: var(--text-muted);
+  background-color: var(--background-modifier-hover);
+  border-color: color-mix(in oklch, var(--text-normal) 14%, transparent);
+}
+
+/* -------------------------------------------------------------------
+ * 2. 徽章内部组件与微指示标 (Pill Components & Indicator)
+ * ------------------------------------------------------------------- */
+/* 标题文字微型化，取消默认粗体 */
+.metadata-properties-title {
+  display: inline;
+  color: inherit;
+  font-size: inherit;
+  font-weight: var(--font-normal);
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+/* 折叠微指示标：与文字紧凑对齐，继承色彩 */
+.metadata-properties-heading .collapse-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  opacity: 0.8;
+}
+
+/* -------------------------------------------------------------------
+ * 3. 容器排版与呼吸间距 (Container Rhythm)
+ * ------------------------------------------------------------------- */
+/* 消除多余内外边距，自然承接内联标题分割线留白 */
+.metadata-container {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: var(--size-4-2);
+}
+
+/* 折叠状态收敛下边距，保持正文阅读呼吸 */
+.metadata-container.is-collapsed {
+  margin-bottom: var(--size-4-3);
+}
