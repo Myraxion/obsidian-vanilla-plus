@@ -1,47 +1,65 @@
 /* ===================================================================
- * 原生增强代码片段：属性全系统 (Properties System)
- * 遵循官方规范：Reference/CSS variables/Editor (Properties)
+ * 原生增强代码片段：文档属性系统 (Properties System)
+ * 遵循官方规范：Reference/CSS variables/Editor/Properties.md
  * 包含模块：
- * 1. 微型属性徽章条 (Compact Metadata Pill)
- * 2. 徽章内部组件与微指示标 (Pill Components & Indicator)
- * 3. 容器排版与呼吸间距 (Container Rhythm)
+ * 1. 属性底层原生变量 (Properties Variables)
+ * 2. 标题排版与状态解耦 (Heading Typography & States)
+ * 3. 标题内联组件 (Heading Inner Components)
+ * 4. 容器外边距布局 (Container Margins)
  * =================================================================== */
 
 /* -------------------------------------------------------------------
- * 1. 微型属性徽章条 (Compact Metadata Pill)
+ * 1. 属性底层原生变量 (Properties Variables)
  * ------------------------------------------------------------------- */
-/* 将头部收拢为自适应微型胶囊，静音降权，提供明确的交互边界 */
+body {
+  --metadata-padding: 0;
+  --metadata-border-width: 0;
+  --metadata-label-font-size: var(--font-ui-smaller);
+  --metadata-input-font-size: var(--font-ui-smaller);
+}
+
+/* -------------------------------------------------------------------
+ * 2. 标题排版与状态解耦 (Heading Typography & States)
+ * ------------------------------------------------------------------- */
+/* 标题基础布局：无边框左对齐基准，折叠展开绝对零位移 */
 .metadata-properties-heading {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 4px;
   width: fit-content;
   min-height: unset;
-  padding: 2px 8px 2px 5px;
-  border-radius: var(--radius-m);
-  border: 1px solid color-mix(in oklch, var(--text-normal) 8%, transparent);
-  background-color: color-mix(in oklch, var(--text-normal) 4%, transparent);
+  padding: 2px 0;
+  border: none;
+  background: transparent;
   color: var(--text-faint);
   font-size: var(--font-ui-smaller);
   line-height: 1;
   cursor: pointer;
   user-select: none;
-  opacity: 0.6;
-  transition: opacity var(--duration-fast) ease, background-color var(--duration-fast) ease, border-color var(--duration-fast) ease, color var(--duration-fast) ease;
+  transition: opacity var(--duration-fast) ease, color var(--duration-fast) ease;
 }
 
-/* 悬停唤醒：平滑恢复清晰度与实体底衬 */
+/* 折叠状态：低透明度中性降权 */
+.metadata-container.is-collapsed .metadata-properties-heading {
+  opacity: 0.6;
+}
+
+/* 展开状态：自然中性对比度 */
+.metadata-container:not(.is-collapsed) .metadata-properties-heading {
+  opacity: 1;
+  color: var(--text-muted);
+}
+
+/* 鼠标悬停交互状态 */
 .metadata-properties-heading:hover {
   opacity: 1;
   color: var(--text-muted);
-  background-color: var(--background-modifier-hover);
-  border-color: color-mix(in oklch, var(--text-normal) 14%, transparent);
 }
 
 /* -------------------------------------------------------------------
- * 2. 徽章内部组件与微指示标 (Pill Components & Indicator)
+ * 3. 标题内联组件 (Heading Inner Components)
  * ------------------------------------------------------------------- */
-/* 标题文字微型化，取消默认粗体 */
+/* 重置标题文本字号与字重 */
 .metadata-properties-title {
   display: inline;
   color: inherit;
@@ -52,28 +70,35 @@
   padding: 0;
 }
 
-/* 折叠微指示标：与文字紧凑对齐，继承色彩 */
-.metadata-properties-heading .collapse-indicator {
+/* 折叠指示标与内部图标继承标题文本色，常态隐形 */
+.metadata-properties-heading :is(.collapse-indicator, .collapse-indicator svg),
+.metadata-container.is-collapsed .metadata-properties-heading :is(.collapse-indicator, .collapse-indicator svg) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0;
   margin: 0;
   color: inherit;
+  opacity: 0;
+  transition: opacity var(--duration-fast) ease;
+}
+
+/* 鼠标悬停时平滑显现折叠指示标（覆盖折叠与展开两态） */
+.metadata-properties-heading:hover :is(.collapse-indicator, .collapse-indicator svg),
+.metadata-container.is-collapsed .metadata-properties-heading:hover :is(.collapse-indicator, .collapse-indicator svg) {
   opacity: 0.8;
 }
 
 /* -------------------------------------------------------------------
- * 3. 容器排版与呼吸间距 (Container Rhythm)
+ * 4. 容器外边距布局 (Container Margins)
  * ------------------------------------------------------------------- */
-/* 消除多余内外边距，自然承接内联标题分割线留白 */
+/* 容器外边距 */
 .metadata-container {
-  padding: 0;
   margin-top: 0;
   margin-bottom: var(--size-4-2);
 }
 
-/* 折叠状态收敛下边距，保持正文阅读呼吸 */
+/* 折叠状态下的底部外边距 */
 .metadata-container.is-collapsed {
   margin-bottom: var(--size-4-3);
 }
