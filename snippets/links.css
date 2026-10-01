@@ -1,0 +1,20 @@
+/* ===================================================================
+ * 原生增强代码片段：链接系统 (Links System)
+ * 遵循官方规范：Reference/CSS variables/Editor/Link.md
+ * 包含模块：
+ * 1. 外部链接原生色彩变量 (External Link Color Variables)
+ *
+ * 使用须知 (Usage Note)：
+ * - 本片段基于 Obsidian 原生双链规范设计，建议在「设置 -> 文件与链接」中保持开启「使用 [[Wikilinks]]」。
+ * - 若关闭该设置并使用标准 Markdown 格式内链 [Title](path.md)，Obsidian 实时预览引擎
+ *   在底层会将所有 Markdown 链接语法标记为 .cm-link 并绑定至 --link-external-color，
+ *   导致 Markdown 格式内链在编辑视图中同步继承外链色彩。
+ * =================================================================== */
+
+/* -------------------------------------------------------------------
+ * 1. 外部链接原生色彩变量 (External Link Color Variables)
+ * ------------------------------------------------------------------- */
+body {
+  --link-external-color: var(--color-blue);
+  --link-external-color-hover: color-mix(in oklch, var(--color-blue) 80%, var(--text-normal));
+}
