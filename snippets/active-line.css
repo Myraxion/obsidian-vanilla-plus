@@ -1,0 +1,33 @@
+/* ===================================================================
+ * 原生增强代码片段：激活文本块高亮 (Active Line Highlight)
+ * 遵循官方规范：Reference/CSS variables/Foundations (Colors & Typography)
+ * 包含模块：
+ * 1. 激活行原生变量配置 (Active Line Variables)
+ * 2. 激活文本块背景高亮 (Active Line Background)
+ * 3. 激活行号高亮加深 (Active Line Number)
+ * =================================================================== */
+
+/* -------------------------------------------------------------------
+ * 1. 激活行原生变量配置 (Active Line Variables)
+ * ------------------------------------------------------------------- */
+body {
+  --active-line-bg: var(--background-modifier-hover);
+  --active-line-radius: var(--radius-s);
+}
+
+/* -------------------------------------------------------------------
+ * 2. 激活文本块背景高亮 (Active Line Background)
+ * ------------------------------------------------------------------- */
+.markdown-source-view.mod-cm6 .cm-line.cm-active {
+  background-color: var(--active-line-bg);
+  border-radius: var(--active-line-radius);
+  transition: background-color 0.15s ease;
+}
+
+/* -------------------------------------------------------------------
+ * 3. 激活行号高亮加深 (Active Line Number)
+ * ------------------------------------------------------------------- */
+.markdown-source-view.mod-cm6 .cm-lineNumbers .cm-gutterElement.cm-active {
+  color: var(--text-normal);
+  font-weight: var(--bold-modifier, 600);
+}
