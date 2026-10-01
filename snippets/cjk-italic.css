@@ -12,7 +12,9 @@
  * ------------------------------------------------------------------- */
 @font-face {
   font-family: "CJK-Italic-KaiTi";
-  src: local("STKaiti"),
+  src: local("LXGW WenKai"),
+    local("霞鹜文楷"),
+    local("STKaiti"),
     local("华文楷体"),
     local("KaiTi"),
     local("楷体"),
